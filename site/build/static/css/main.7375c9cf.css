@@ -1,0 +1,2 @@
+.app{align-items:center;display:flex;flex-direction:column}.game-board{display:grid;grid-template-columns:repeat(10,40px);grid-template-rows:repeat(10,40px);margin:20px}.cell{border:1px solid #ccc;height:40px;width:40px}.ship{text-align:center}.player-list,.programming-panel{border:1px solid #ccc;margin:10px;padding:10px}
+/*# sourceMappingURL=main.7375c9cf.css.map*/
