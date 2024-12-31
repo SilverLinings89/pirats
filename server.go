@@ -159,6 +159,8 @@ func handleChallenge(conn *websocket.Conn, t interface{}) {
         return
     }
 
+    fmt.Println("New challenge started")
+
     for _, target := range players {
         if target.Name == targetName && !target.InGame {
             p1, successP1 := getPlayerForConnection(conn)
@@ -173,7 +175,7 @@ func handleChallenge(conn *websocket.Conn, t interface{}) {
                     PlayerLeft: p1.Id, 
                     PlayerRight: p2.Id,
                 }
-
+                fmt.Println("GameId: ", id)
                 players[target.Id].InGame = true
                 players[p1.Id].InGame = true
 
@@ -310,11 +312,15 @@ func broadcastGameOver(gameID string) {
     }
     if err := players[gameState.PlayerLeft].Conn.WriteJSON(msg); err != nil {
         fmt.Println("Error sending game over message:", err)
+    } else {
+        players[gameState.PlayerLeft].InGame = false
     }
     if err := players[gameState.PlayerRight].Conn.WriteJSON(msg); err != nil {
         fmt.Println("Error sending game over message:", err)
+    } else {
+        players[gameState.PlayerRight].InGame = false
     }
-
+    fmt.Println("Game ended: ", gameID)
     mutex.Unlock()
 }
 

@@ -25,4 +25,5 @@ go.work.sum
 .env
 
 site/node_modules
+site/build
 

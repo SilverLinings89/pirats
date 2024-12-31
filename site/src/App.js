@@ -97,7 +97,7 @@ const Game = () => {
 					{players.length === 0 ? (
 						<p>No players connected</p>
 					) : (
-						players.map((player) => (
+						players.filter((player) => player !== playerName).map((player) => (
 							<li key={player}>
 								{player}{" "}
 								<button onClick={() => handleChallenge(player)}>Challenge</button>
